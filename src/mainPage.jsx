@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BKNFTY_DAILY_OHLC_BINARY, BKNFTY_1MIN_2021 } from "./constants";
 import { table as Table } from "./table";
-export const Main = () => {
+export const MainPage = () => {
   const [data, setData] = useState(BKNFTY_DAILY_OHLC_BINARY);
   const [number, setNumber] = useState(0);
   const [table_data, setTable_data] = useState({});
