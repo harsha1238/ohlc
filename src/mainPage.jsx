@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { BKNFTY_DAILY_OHLC_BINARY, BKNFTY_1MIN_2021 } from "./constants";
 import { table as Table } from "./table";
+import { mapTheData } from "./utils";
+import { Cards } from "./cards";
 export const MainPage = () => {
   const [data, setData] = useState(BKNFTY_DAILY_OHLC_BINARY);
   const [number, setNumber] = useState(0);
@@ -23,7 +25,7 @@ export const MainPage = () => {
     });
 
     for (let key in res) {
-      resultFinal[key] = ((res[key] * 100) / count).toString().slice(0, 2);
+      resultFinal[key] = ((res[key] * 100) / count).toString().slice(0, 4);
     }
     setTable_data(resultFinal);
   };
@@ -31,11 +33,8 @@ export const MainPage = () => {
     <>
       <select
         onChange={(e) => {
-          setData(
-            e.target.value == "BKNFTY_1MIN_2021"
-              ? BKNFTY_1MIN_2021
-              : BKNFTY_DAILY_OHLC_BINARY
-          );
+          let data = mapTheData(e.target.value);
+          setData(data);
           handleDataChange(number, data);
         }}
       >
@@ -43,6 +42,10 @@ export const MainPage = () => {
           Banknifty daily --2015
         </option>
         <option value={"BKNFTY_1MIN_2021"}>Banknifty 1 Min --2021</option>
+        <option value={"BNKFY_DAILY_2005_2023"}>BNKFY_DAILY_2005_2023</option>
+        <option value={"BANKFY_WEEKLY_2008_2023"}>
+          BANKFY_WEEKLY_2008_2023
+        </option>
       </select>
       <input
         value={number}
@@ -59,7 +62,10 @@ export const MainPage = () => {
         Go
       </button>
       <hr />
-      <Table data={table_data} />
+      <div style={{ display: "flex" }}>
+        <Table data={table_data} />
+        <Cards data={table_data} />
+      </div>
     </>
   );
 };

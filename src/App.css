@@ -1,6 +1,7 @@
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
+    margin: 10px;
   
 }
 
@@ -12,5 +13,8 @@ th {
 }
 
 tr:nth-child(even) {
-    background-color: #babcbb;
+    background-color: #b0b8b4;
+}
+div.section{
+    display:flex
 }
