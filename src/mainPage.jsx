@@ -64,7 +64,7 @@ export const MainPage = () => {
       <hr />
       <div style={{ display: "flex" }}>
         <Table data={table_data} />
-        <Cards data={table_data} />
+        <Cards data={table_data} raw={data} />
       </div>
     </>
   );
